@@ -1,185 +1,115 @@
 .hero {
-	position: relative;
-    padding-top: 128px;
-	padding-bottom: 88px;
-	z-index: 0;
-
-	.hero-bg {
-		position: absolute;
-		top: 0;
-		bottom: 42%;
-		left: 0;
-		right: 0;
-		background: color(bg, 1i);
-		z-index: -2;
-	}
-
-	.hero-particles-container {
-		position: absolute;
-		top: 0;
-		bottom: 42%;
-		left: 0;
-		right: 0;
-	}
-
-	&::before,
-	&::after {
-		content: '';
-		position: absolute;
-		left: calc(50% - 360px);
-		width: 720px;
-		background-repeat: no-repeat;
-	}
-
-	&::before {
-		top: 0;
-		height: 159px;
-		background-image: url('../images/hero-bg-top.svg');
-		background-size: 720px 159px;
-	}
-
-	&::after {
-		bottom: 42%;
-		height: 173px;
-		background-image: url('../images/hero-bg-bottom.svg');
-		background-size: 720px 173px;
-	}
+    padding-top: 48px;
 }
 
-.hero-inner {
-	position: relative;
-	z-index: 1;
+.hero-paragraph {
+    margin-bottom: 32px;
 }
 
-.hero-copy {
-    position: relative; /* To display elements above hero illustrations */
-	margin-bottom: 48px;
+.hero-illustration {
+	display: none;
+	position: relative;
+}
+
+.hero-bg,
+.hero-square,
+.hero-dots,
+.hero-line {
+	position: absolute;
+	transform-origin: 50% 50%;
+}
+
+.hero-bg {
+	top: -160px;
+	left: 28px;
+}
+
+.hero-square-1 {
+	top: -270px;
+	left: 150px;
+}
+
+.hero-square-2 {
+	top: -42px;
+	left: 600px;
+}
+
+.hero-square-3 {
+	top: 46px;
+	left: 74px;
+}
+
+.hero-square-4 {
+	top: 0;
+	left: 250px;
+}
+
+.hero-square-5 {
+	top: 108px;
+	left: 633px;
+}
+
+.hero-square-6 {
+	top: 140px;
+	left: 185px;
+}
+
+.hero-square-7 {
+	top: 336px;
+	left: 600px;
+}
+
+.hero-square-8 {
+	top: 350px;
+	left: 193px;
+}
+
+.hero-dots-1 {
+	top: -107px;
+	left: 397px;
+}
+
+.hero-dots-2 {
+	top: 65px;
+	left: 202px;
+}
+
+.hero-dots-3 {
+	top: 396px;
+	left: 53px;
+}
+
+.hero-line-1 {
+	top: 318px;
+	left: 229px;
 }
 
 @include media( '>medium' ) {
 
     .hero {
-        padding-top: 160px;
-		padding-bottom: 128px;
-
-		&::before,
-		&::after {
-			left: calc(50% - 720px);
-			width: 1440px;
-		}
-
-		&::before {
-			height: 318px;
-			background-size: 1440px 318px;
-		}
-
-		&::after {
-			height: 347px;
-			background-size: 1440px 347px;
-		}
+        padding-top: 80px;
     }
 
+	.hero-inner {
+		/* Split hero in two parts */
+		display: flex;
+	}
+
 	.hero-copy {
-		margin-bottom: 88px;
+		padding-right: 48px;
+		min-width: 512px;
+		width: 512px;
 	}
 
-	.hero-paragraph {
-		padding-left: 72px;
-		padding-right: 72px;
-	}
-}
-
-.has-animations {
-
-	.hero .hero-bg,
-	.hero::before,
-	.hero::after,
-	.hero-particles-container,
-	.site-header,
-	.hero-title,
-	.hero-paragraph,
-	.hero-cta,
-	.hero .mockup-bg,
-	.hero .device-mockup {
-		opacity: 0;
-	}
-
-	&.is-loaded {
-
-		.hero {
-
-			.hero-bg {
-				animation: heroBg .6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
-			}
-
-			&::before,
-			&::after {
-				animation: heroFadeIn .6s ease forwards .45s;
-			}
-		}
-
-		.site-header,
-		.hero-particles-container,
-		.hero .mockup-bg {
-			animation: heroFadeIn .6s ease forwards .45s;
-		}
-
-		.hero-title {
-			animation: heroContent .6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards .15s;
-		}
-
-		.hero-paragraph {
-			animation: heroContent .6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards .3s;
-		}
-
-		.hero-cta {
-			animation: heroContent .6s cubic-bezier(0.215, 0.61, 0.355, 1) forwards .45s;
-		}
-
-		.hero .device-mockup {
-			animation: heroMockup .6s ease forwards .6s;
-		}
+	.hero-illustration {
+		display: block;
+		width: 528px;
 	}
 }
 
-@keyframes heroBg {
-	from {
-		transform: scaleY(0) scaleX(1.2) skewY(30deg);
-		opacity: 1;
-	}
-	to {
-		transform: scaleY(1) scaleX(1) skewY(0);
-		opacity: 1;
-	}
-}
+@include media( '<=medium' ) {
 
-@keyframes heroContent {
-	from {
-		transform: translateY(40px) skewY(2deg);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0) skewY(0);
-		opacity: 1;
-	}
-}
-
-@keyframes heroMockup {
-	from {
-		transform: translateY(80px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-
-@keyframes heroFadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
+	.hero-form {
+		margin: 0 auto;
 	}
 }
